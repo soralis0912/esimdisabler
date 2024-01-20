@@ -4,14 +4,17 @@ pluginManagement {
         google()
         mavenCentral()
     }
+    plugins {
+        id 'com.android.application' version '8.2.1' apply false
+        id 'com.android.library' version '8.2.1' apply false
+    }
 }
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
         mavenCentral()
         maven { url = "https://api.xposed.info" }
     }
 }
-rootProject.name = "esim disabler"
+rootProject.name = "eSIM Disabler"
 include ':app'

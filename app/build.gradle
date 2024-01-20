@@ -4,15 +4,13 @@ plugins {
 
 android {
     namespace 'org.soralis_0912.esim_disabler'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
-        applicationId "org.soralis_0912.esim_disabler"
         minSdk 26
         targetSdk 32
         versionCode 1
         versionName "1.0"
-
     }
 
     signingConfigs {
@@ -44,15 +42,12 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 }
 
 dependencies {
-
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.5.0'
     compileOnly 'de.robv.android.xposed:api:82'
     compileOnly 'de.robv.android.xposed:api:82:sources'
 }
