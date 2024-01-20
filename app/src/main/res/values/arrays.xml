@@ -1,6 +1,0 @@
-<resources>
-    <!-- Reply Preference -->
-    <string-array name="xposed_scope">
-        <item>com.android.phone</item>
-    </string-array>
-</resources>
