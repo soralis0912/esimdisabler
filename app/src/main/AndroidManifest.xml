@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <application
-        android:icon="@android:mipmap/sym_def_app_icon"
-        android:label="eSIM Disabler"
-        android:roundIcon="@android:mipmap/sym_def_app_icon"
-        android:theme="@android:style/Theme.DeviceDefault">
+    <application android:label="eSIM Disabler">
         <meta-data
             android:name="xposedmodule"
             android:value="true" />

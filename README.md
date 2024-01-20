@@ -1,2 +1,2 @@
-#### eSIM disabler For MIUI
-disable eSIM for JP MIUI user
+#### eSIM Disabler for MIUI
+Disable eSIM for JP MIUI user
