@@ -12,29 +12,15 @@ public class Main implements IXposedHookLoadPackage {
             return;
         }
 
-        // for A14
-        try {
-            XposedHelpers.findAndHookMethod("com.android.phone.MiuiEsimManagerBase", lpparam.classLoader, "isRemoveEsimSwitch", new XC_MethodHook() {
-                @Override
-                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                    param.setResult(false);
-                }
-            });
-        } catch (Throwable t) {
-            XposedBridge.log("Failed to hook com.android.phone.MiuiEsimManagerBase method");
-        }
+        XposedHelpers.findAndHookMethod(XposedHelpers.findClass("android.os.SystemProperties", lpparam.classLoader), "native_get", String.class, String.class, new XC_MethodHook() {
+            @Override
+            protected void afterHookedMethod(MethodHookParam param) {
+                final String key = param.args[0].toString();
 
-        // for A13
-        try {
-            XposedHelpers.findAndHookMethod("com.android.phone.MiuiEsimManager", lpparam.classLoader, "isRemoveEsimSwitch", new XC_MethodHook() {
-                @Override
-                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                    param.setResult(false);
+                if (key == "ro.miui.build.region") {
+                    param.setResult("in");
                 }
-            });
-        } catch (Throwable t) {
-            XposedBridge.log("Failed to hook com.android.phone.MiuiEsimManager method");
-        }
-        
+            }
+        });
     }
 }
