@@ -17,10 +17,20 @@ public class Main implements IXposedHookLoadPackage {
             protected void afterHookedMethod(MethodHookParam param) {
                 final String key = param.args[0].toString();
 
-                if (key == "ro.miui.build.region") {
-                    param.setResult("in");
+                if (key == "ro.miui.build.region"){
+                    param.setResult("global");
                 }
             }
         });
+
+        XposedHelpers.findAndHookMethod("com.android.phone.MiuiEsimManagerBase", lpparam.classLoader, "isRemoveEsimSwitch", new XC_MethodHook() {
+            @Override
+            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                super.afterHookedMethod(param);
+                boolean originalResult = (boolean) param.getResult();
+                XposedBridge.log("isRemoveEsimSwitch() returned: " + result);
+                param.setResult(false);
+            }
+        }); 
     }
 }
