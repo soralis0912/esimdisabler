@@ -28,7 +28,7 @@ public class Main implements IXposedHookLoadPackage {
             protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                 super.afterHookedMethod(param);
                 boolean originalResult = (boolean) param.getResult();
-                XposedBridge.log("isRemoveEsimSwitch() returned: " + result);
+                XposedBridge.log("isRemoveEsimSwitch() returned: " + originalResult);
                 param.setResult(false);
             }
         }); 
