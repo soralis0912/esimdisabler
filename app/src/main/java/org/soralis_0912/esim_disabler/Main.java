@@ -15,6 +15,8 @@ public class Main implements IXposedHookLoadPackage {
         XposedHelpers.findAndHookMethod(XposedHelpers.findClass("android.os.SystemProperties", lpparam.classLoader), "native_get", String.class, String.class, new XC_MethodHook() {
             @Override
             protected void afterHookedMethod(MethodHookParam param) {
+                super.afterHookedMethod(param);
+
                 final String key = param.args[0].toString();
 
                 if (key == "ro.miui.build.region"){
@@ -31,6 +33,14 @@ public class Main implements IXposedHookLoadPackage {
                 XposedBridge.log("isRemoveEsimSwitch() returned: " + originalResult);
                 param.setResult(false);
             }
-        }); 
+        });
+
+        XposedHelpers.findAndHookMethod("com.android.phone.MiuiEsimManagerBase", lpparam.classLoader, "isSupportEsimForCountry", java.lang.String.class, new XC_MethodHook() {
+            @Override
+            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                super.afterHookedMethod(param);
+                param.setResult(true);
+            }
+        });
     }
 }
